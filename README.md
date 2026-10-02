@@ -117,11 +117,19 @@ Full machine-readable list: [`iocs/iocs.csv`](iocs/iocs.csv).
 
 ## Methodology
 
-Static analysis in an isolated, disposable Linux container: Python (custom decoders), [donut-decryptor](https://github.com/volexity/donut-decryptor), [dnfile](https://github.com/malwarefrank/dnfile), [dncil](https://github.com/mandiant/dncil), [yara-python](https://github.com/VirusTotal/yara-python) and OpenSSL. The only execution was the dropper under Node.js, to show it fails outside Windows. No connection was made to the attacker's infrastructure beyond a DNS lookup. AI-assisted (Claude Code); every finding was verified against the disassembled code. See [lessons learned](docs/lessons-learned.md#on-ai-assisted-analysis).
+Static analysis in an isolated, disposable Linux container: Python (custom decoders), [donut-decryptor](https://github.com/volexity/donut-decryptor), [dnfile](https://github.com/malwarefrank/dnfile), [dncil](https://github.com/mandiant/dncil), [yara-python](https://github.com/VirusTotal/yara-python) and OpenSSL. The only execution was the dropper under Node.js, to show it fails outside Windows. No connection was made to the attacker's infrastructure beyond a DNS lookup. AI-assisted; see [Acknowledgements](#acknowledgements).
 
 ## Disclaimer
 
 For defensive, educational and research purposes. Indicators reflect what was observed on 2026-10-01 and may since have been reassigned to unrelated parties. Do not interact with the listed infrastructure.
+
+## Acknowledgements
+
+Analysis performed with [Claude Code](https://claude.com/claude-code) (Anthropic) as an AI pair analyst: custom decoders, .NET IL tooling, YARA testing and documentation drafts. Every finding was verified against the disassembled code before publishing. More in [lessons learned](docs/lessons-learned.md#on-ai-assisted-analysis).
+
+## License
+
+Code, YARA and Sigma rules: [MIT](LICENSE). Written documentation (README files and `docs/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ## Author
 
