@@ -1,0 +1,68 @@
+title: AutoIt Interpreter Running .au3 From AppData Launched by Windows Script Host
+id: 7c1f4f0e-3b8a-4d55-9a8e-2f6b1d0c9e41
+status: experimental
+description: |
+    Detects a renamed or legitimate AutoIt3 interpreter executing an .au3 script from the user's AppData folder,
+    spawned by wscript.exe or cscript.exe. Seen in the fake NF-e (Brazilian invoice) phishing chain, where a
+    .js dropper writes AutoIt3.exe and a shellcode-injector script to %APPDATA%\CloudStore\.
+references:
+    - https://github.com/maxh33/whatsapp-nfe-phishing-asyncrat-analysis
+author: maxh33
+date: 2026-10-02
+tags:
+    - attack.execution
+    - attack.t1059.007
+    - attack.t1059.010
+    - attack.defense-evasion
+    - attack.t1027.009
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_parent:
+        ParentImage|endswith:
+            - '\wscript.exe'
+            - '\cscript.exe'
+    selection_script:
+        CommandLine|contains: '.au3'
+    selection_path:
+        Image|contains: '\AppData\'
+    condition: all of selection_*
+falsepositives:
+    - Legitimate AutoIt tooling deployed by IT through logon scripts (rare from AppData)
+level: high
+---
+title: IExpress Spawned Without Arguments by a Process Running From AppData
+id: 2d9a6b3e-8f41-4c7a-b0d2-5e9c3a71f8b6
+status: experimental
+description: |
+    Detects iexpress.exe (or werfault.exe) started by a parent executable located in AppData with an empty or
+    image-only command line. In the fake NF-e chain, the AutoIt loader creates iexpress.exe suspended and with no
+    window, then injects Donut shellcode that loads an AsyncRAT client in memory.
+references:
+    - https://github.com/maxh33/whatsapp-nfe-phishing-asyncrat-analysis
+author: maxh33
+date: 2026-10-02
+tags:
+    - attack.defense-evasion
+    - attack.privilege-escalation
+    - attack.t1055
+    - attack.t1620
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_child:
+        Image|endswith:
+            - '\iexpress.exe'
+            - '\werfault.exe'
+    selection_parent:
+        ParentImage|contains: '\AppData\'
+    filter_with_args:
+        CommandLine|contains:
+            - ' /'
+            - ' -'
+    condition: all of selection_* and not filter_with_args
+falsepositives:
+    - Software installers unpacked to AppData that legitimately call IExpress (verify the parent's signature)
+level: high
