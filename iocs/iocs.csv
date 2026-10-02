@@ -1,0 +1,24 @@
+type,value,context,first_seen
+sha256,ee479f0b931765f95731ef57ce60e2b0aab68e40c00794d3f186e34bc7ca8bb6,Stage 1 JScript dropper NFE_7482594_0938402947928387421_PDF.js,2026-10-01
+md5,637a7e73e9afcc74ee66968946d95069,Stage 1 JScript dropper,2026-10-01
+sha256,c1ac8a0f1b5413bcf56964d3e9f8bcc3a15c0a7ac51c46a7f0dc4a6a4ca724d7,Stage 2 AutoIt loader zgmnikcw.au3,2026-10-01
+sha256,bdd2b7236a110b04c288380ad56e8d7909411da93eed2921301206de0cb0dda1,Legitimate AutoIt3.exe 3.3.18.0 dropped as hukdrtqp.exe (abused - do not block globally),2026-10-01
+sha256,544a23d95eb467ada18dacab30476ad0030b2730a9c77a49cca292073799856c,Stage 3 XOR-encrypted shellcode plçda,2026-10-01
+sha256,809f6dbdf10927621fdef50bea27548c7e6b83b3bbeca7853d6cb007f7a74182,Stage 3 Donut shellcode (decrypted),2026-10-01
+sha256,f1af1eca83ae34979f95fdd822b349213df9323bda7ab344595820f6afacf518,Stage 4 AsyncRAT .NET client (ChaCha20 config fork),2026-10-01
+md5,6c183007a0c6f14b47b193d3f6839477,Stage 4 AsyncRAT .NET client,2026-10-01
+domain,dhdxhdhdhd.duckdns.org,AsyncRAT C2 (DuckDNS dynamic DNS),2026-10-01
+domain,uhdyadasud.duckdns.org,AsyncRAT C2 (DuckDNS dynamic DNS),2026-10-01
+ipv4,45.149.153.144,AsyncRAT C2 - both domains resolved here on 2026-10-01,2026-10-01
+port,6606/tcp,AsyncRAT C2 port (TLS),2026-10-01
+port,7707/tcp,AsyncRAT C2 port (TLS),2026-10-01
+port,8808/tcp,AsyncRAT C2 port (TLS),2026-10-01
+x509_sha1,e3c5a7712ce7565835f39c1874f9c4a294f10061,C2 TLS certificate CN=Server (notBefore 2026-05-30),2026-10-01
+x509_serial,9b3bd0867b82b4b967af7a729862cb,C2 TLS certificate serial,2026-10-01
+mutex,HquPKsyB1gUp,AsyncRAT mutex,2026-10-01
+file_path,%APPDATA%\CloudStore\hukdrtqp.exe,Dropped AutoIt interpreter,2026-10-01
+file_path,%APPDATA%\CloudStore\zgmnikcw.au3,Dropped AutoIt loader,2026-10-01
+file_path,%APPDATA%\CloudStore\plçda,Dropped encrypted shellcode,2026-10-01
+registry,HKCU\Software\Microsoft\Windows\CurrentVersion\jrgmncha\xvmotf,Holds XOR key 2690C12E4232FBA705F399AB7D554CBE (deleted after use),2026-10-01
+process,C:\Windows\System32\iexpress.exe,Injection target (fallback werfault.exe) - created suspended with no window,2026-10-01
+browser_extension,pkeenpghpkeocnndbeclgeojlbnoebcd,Extension the RAT can force-install via ExtensionInstallForcelist (disabled in this sample),2026-10-01
