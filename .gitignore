@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+# never commit samples or extracted payloads
+samples/
+*.bin
+*.exe
+*.dll
+*.au3
+*.js
+*.zip
+*.7z
